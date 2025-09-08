@@ -23,7 +23,7 @@ The analysis was conducted using **R** and the following approaches:
 - Correlation analysis (study time vs grades)  
 - Hypothesis testing (internet access, gender differences)  
 - Visualization with **ggplot2**
-- 
+
 ---
 
 ## Key Results
@@ -66,5 +66,11 @@ This project demonstrates how **R programming, statistical tests, and visualizat
 ## Technologies Used
 - **R** (ggplot2, dplyr, rstatix)  
 - **R Markdown** for reproducible reporting  
+
+---
+##  Author
+
+**Chidera Stephanie Ughamadu**  
+Data Analyst
 
 
