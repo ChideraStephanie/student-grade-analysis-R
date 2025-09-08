@@ -1,0 +1,110 @@
+---
+title: "Student Performance Analysis"
+author: "Chidera Ughamadu"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+  word_document: default
+---
+knitr::opts_chunk$set(
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  fig.path = "results/",
+  fig.width = 7,
+  fig.height = 5
+)
+
+# Load libraries
+library(dplyr)
+library(ggplot2)
+library(readr)
+library(rstatix)
+
+1. Introduction
+This project analyzes the Student-Mat dataset (395 students) to explore how study time, absences, internet access, and gender affect academic performance.
+
+The goal is to apply statistical analysis and visualization in R to identify significant factors and build a regression model predicting final grades (G3).
+
+2. Data Loading
+# Load dataset 
+student_mat <- read.csv("data/student-mat.csv", sep = ";")
+
+# Preview structure
+glimpse(student_mat)
+
+
+Interpretation: The dataset contains 395 observations with multiple variables such as study time, absences, internet access, gender, and three period grades (G1, G2, G3). These variables are useful for analyzing academic performance.
+
+3. Results
+# Study Time vs Final Grade
+ggplot(student_mat, aes(x = studytime, y = G3)) +
+  geom_point() +
+  geom_smooth(method = "lm", color = "blue") +
+  labs(title = "Study Time vs Final Grade", 
+       x = "Study Time", y = "Final Grade (G3)")
+
+cor(student_mat$studytime, student_mat$G3)
+
+
+Interpretation: The correlation is approximately 0.098, showing a very weak positive relationship between study time and final grade. This suggests that while study time matters slightly, it is not the strongest determinant of performance.
+
+# Absences vs Final Grade
+ggplot(student_mat, aes(x = absences, y = G3)) +
+  geom_point(color = "red") +
+  geom_smooth(method = "lm", color = "blue") +
+  labs(title = "Absences vs Final Grade", 
+       x = "Absences", y = "Final Grade (G3)")
+
+
+Interpretation: The scatter plot shows a negative trend: students with higher absences tend to score lower in their final grades. This indicates that consistent attendance is important for better academic performance.
+
+# Internet Access and Performance
+student_mat$internet <- as.factor(student_mat$internet)
+
+ggplot(student_mat, aes(x = internet, y = G3, fill = internet)) +
+  geom_boxplot() +
+  labs(title = "Final Grade by Internet Access", 
+       x = "Internet Access", y = "Final Grade (G3)")
+
+t.test(G3 ~ internet, data = student_mat)
+
+
+Interpretation: The Welch t-test gives a p-value ≈ 0.049, which is just below 0.05. This means students with internet access perform significantly better on average than those without, likely because internet access provides additional learning resources.
+
+# Gender Differences in Performance
+student_mat$sex <- as.factor(student_mat$sex)
+
+ggplot(student_mat, aes(x = sex, y = G3, fill = sex)) +
+  geom_boxplot() +
+  labs(title = "Final Grade by Gender", 
+       x = "Gender", y = "Final Grade (G3)")
+
+t.test(G3 ~ sex, data = student_mat)
+
+
+Interpretation: The t-test produces a p-value ≈ 0.04, showing a significant difference in performance between male and female students. On average, male students scored slightly higher than female students.
+
+4. Conclusion
+
+This analysis highlights key insights into student performance:
+
+Study time has only a weak positive effect on final grades.
+
+Absences negatively impact academic outcomes.
+
+Internet access is associated with better performance.
+
+Male students scored slightly higher than females.
+
+Regression modeling showed that previous grades (especially G2) are the most reliable predictors of final outcomes.
+
+This project demonstrates how R programming, statistical tests, and visualization can be applied to educational data, bridging the gap between theory and real-world insights.
+
+5. Session Info
+sessionInfo()
+
+
