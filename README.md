@@ -29,25 +29,25 @@ The analysis was conducted using **R** and the following approaches:
 ## Key Results
 
 ### Study Time vs Final Grade
-[Study Time vs Final Grade](studytime_vs_final.png)
+[Study Time vs Final Grade](Studytime_vs_final.png)
 🔹 *Weak positive correlation (~0.10). Study time has little effect on final performance compared to other factors.*  
 
 ---
 
 ### Absences vs Final Grade 
-![Absences vs Final Grade](absences_vs_final.png)
+![Absences vs Final Grade](Absences_vs_final.png)
 🔹 *Negative relationship. Students with more absences tend to score lower.*  
 
 ---
 
 ### Gender vs Final Grade
-![Gender vs Final Grade](gender_vs_final.png)
+![Gender vs Final Grade](Gender_vs_final.png)
 🔹 *Males scored slightly higher on average (p ≈ 0.04).*  
 
 ---
 
 ### Internet Access vs Final Grade
-![Internet vs Final Grade](internet_vs_final.png)
+![Internet vs Final Grade](Internet_vs_final.png)
 🔹 *Students with internet access perform better (p ≈ 0.049). Access to resources seems beneficial.*  
 
 
